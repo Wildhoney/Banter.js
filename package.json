@@ -1,0 +1,9 @@
+{
+    "name": "Banter.js",
+    "version": "0.1.0",
+    "author": "Adam Timberlake",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com:Wildhoney/Banter.js.git"
+    }
+}
