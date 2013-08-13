@@ -1,6 +1,5 @@
 $:.unshift File.dirname(__FILE__).concat('/vendor/Ruby-IRC/lib/')
 $:.unshift File.dirname(__FILE__).concat('/vendor/em-websocket/lib/')
-print $:
 
 require_relative 'vendor/Ruby-IRC/lib/IRC.rb'
 require_relative 'vendor/em-websocket/lib/em-websocket.rb'
