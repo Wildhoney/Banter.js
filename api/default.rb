@@ -17,7 +17,7 @@ EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080) do |ws|
   #ws.onmessage { |msg| ws.send "Pong: #{msg}" }
   #ws.onclose   { puts "WebSocket closed" }
 
-  banter  = Banter::Base.new('Adam')
-  client  = banter.client
+  banter = Banter::Base.new('Adam', 'discussion.banterjs.com', 'support', 6667)
+  banter.send_message 'Hello all!'
 
 end
