@@ -16,15 +16,15 @@ module Banter
       @bot = IRC.new(name, server, port, 'Banter.js Client')
 
       # Add a callback for when the MotD has been displayed -- we'll then join the channel specified.
-      IRCEvent.add_callback('endofmotd') { |event| bot.add_channel('#'.concat(channel)) }
+      IRCEvent.add_callback('endofmotd') { |event| @bot.add_channel('#'.concat(channel)) }
 
       # Finally we connect to the IRC server!
       @bot.connect
 
     end
 
-    #method client
-    #return IRC {Instance}
+    #method send_message
+    #return {Boolean}
     def send_message(message)
       @bot.send_message(@channel, message)
     end

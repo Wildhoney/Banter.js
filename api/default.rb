@@ -10,14 +10,14 @@ require_relative 'vendor/em-websocket/lib/em-websocket.rb'
 require_relative 'lib/default'
 
 # Initialise the WebSocket on port 8080.
-EventMachine::WebSocket.start(:host => "0.0.0.0", :port => 8080) do |ws|
+EventMachine::WebSocket.start(:host => '127.0.0.1', :port => 8080) do |ws|
 
   # Initial debug information for the API.
   #ws.onopen    { ws.send "Hello Client!"}
   #ws.onmessage { |msg| ws.send "Pong: #{msg}" }
   #ws.onclose   { puts "WebSocket closed" }
 
-  banter = Banter::Base.new('Adam', 'discussion.banterjs.com', 'support', 6667)
+  banter = Banter::Base.new('Adam', 'irc.freenode.net', 'support', 6667)
   banter.send_message 'Hello all!'
 
 end
