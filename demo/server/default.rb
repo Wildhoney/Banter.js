@@ -16,7 +16,7 @@ require_relative 'lib/default'
 EventMachine::WebSocket.start(:host => '127.0.0.1', :port => 8080) do |ws|
 
   ws.onopen {
-    puts "WebSocket connection open"
+    puts "Banter.js Initialised..."
 
     # publish message to the client
     ws.send({ :name => 'Adam', :message => 'Test...' }.to_json)
