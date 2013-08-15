@@ -8,6 +8,7 @@ window.banterApp = angular.module('banterApp', []);
 function ApplicationController($scope) {
 
     var socket = new WebSocket('ws://localhost:8080');
+    $scope.messages = [];
 
     socket.onopen = function(event) {
         socket.send('Test baby');
@@ -16,7 +17,14 @@ function ApplicationController($scope) {
     };
 
     socket.onmessage = function(event) {
-        console.log(event.data);
+
+        if (typeof $ === 'undefined') {
+            console.error('Please install jQuery to continue using Banter.js.');
+            return;
+        }
+
+        $scope.messages.push($.parseJSON(event.data));
+        $scope.$apply();
     };
 
     /**
