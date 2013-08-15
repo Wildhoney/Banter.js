@@ -4,6 +4,7 @@ $:.unshift File.dirname(__FILE__).concat('/vendor/Ruby-IRC/lib/')
 
 # Our native dependencies.
 require 'json'
+require 'digest/md5'
 
 # Now both libraries are in the $LOAD_PATH ($:) we can load them.
 #require_relative 'vendor/Ruby-IRC/lib/IRC.rb'
@@ -21,13 +22,13 @@ EventMachine::WebSocket.start(:host => '0.0.0.0', :port => 8080) do |websocket|
     puts "Banter.js Initialised..."
 
     # publish message to the client
-    websocket.send({ :name => 'Adam', :message => 'Test...' }.to_json)
+    websocket.send({ :name => 'Adam', :message => 'Test...', :hash => Digest::MD5.hexdigest("adam.timberlake@gmail.com") }.to_json)
   }
 
   websocket.onclose { puts "Connection closed" }
   websocket.onmessage { |msg|
     puts "Received message: #{msg}"
-    websocket.send "Pong: #{msg}"
+    #websocket.send "Pong: #{msg}"
   }
 
   # Initial debug information for the API.
