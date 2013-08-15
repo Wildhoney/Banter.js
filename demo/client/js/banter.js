@@ -18,10 +18,10 @@ function ApplicationController($scope) {
 
     socket.onmessage = function(event) {
 
-        if (typeof $ === 'undefined') {
-            console.error('Please install jQuery to continue using Banter.js.');
-            return;
-        }
+//        if (typeof $ === 'undefined') {
+//            console.error('Please install jQuery to continue using Banter.js.');
+//            return;
+//        }
 
         $scope.messages.push($.parseJSON(event.data));
         $scope.$apply();
