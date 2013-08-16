@@ -30,7 +30,7 @@
             var ws;
 
             // Initialise the WebSocket and connect to the Ruby server.
-            $rootScope.webSocket = ws = new WebSocket('ws://localhost:8080');
+            $rootScope.webSocket = ws = new WebSocket(url);
 
             /**
              * @method onopen
@@ -39,7 +39,7 @@
              */
             ws.onopen = function onopen() {
                 console.log('Client: Banter.js Connected, Sugar!');
-                ws.send('Server: Client Connected at ' + new Date().getTime());
+                ws.send('Server: Client Connected at ' + moment().format('HH:mm:ss'));
                 $rootScope.$broadcast('connected');
             };
 
