@@ -38,8 +38,17 @@
              * @return {void}
              */
             ws.onopen = function onopen() {
-                ws.send('Banter.js Client Connected, Sugar!');
+                console.log('Client: Banter.js Connected, Sugar!');
+                ws.send('Server: Client Connected at ' + new Date().getTime());
                 $rootScope.$broadcast('connected');
+            };
+
+            /**
+             * @method onerror
+             * @return {void}
+             */
+            ws.onerror = function onerror() {
+                console.error('Client: An Error Occurred, Petal!');
             };
 
             /**
@@ -98,12 +107,25 @@
          */
         $scope.message = '';
 
-        // Connect to the Ruby WebSocket server.
-        $webSocket.connect('ws://localhost:8080');
+        /**
+         * @event bootstrap
+         * @param event {Object}
+         * @param url {String}
+         * Bootstrap the Banter.js client!
+         * @return {void}
+         */
+        $scope.$on('bootstrap', function bootstrap(event, url) {
+
+            console.log('Client: Bootstrapping Banter.js: ' + url);
+
+            // Connect to the Ruby WebSocket server.
+            $webSocket.connect('ws://localhost:8080');
+
+        });
 
         /**
          * @event connected
-         * Bootstrap the Banter.js client!
+         * Connect the client to the server.
          * @return {void}
          */
         $scope.$on('connected', function connected() {
@@ -144,6 +166,29 @@
             $scope.$emit('sendMessage', { name: 'Wildhoney', message: message });
             // Send the message to the awaiting WebSocket server!
         }
+
+    }]);
+
+    /**
+     * @directive websocketServer
+     * @restrict A
+     * @type {Function}
+     * Extracts the WebSocket URL from the root element. Once the URL has been determined
+     * we can bootstrap the application.
+     * @return {Object}
+     */
+    banterApp.directive('banter', ['$rootScope', function websocketServer($rootScope) {
+
+        return { restrict: 'C', link: function linkFn($attrs) {
+
+            // Find the URL from the attribute, otherwise assume the default.
+            var url = (typeof $attrs.websocketServer !== 'undefined')
+                    ? $attrs.websocketServer : 'ws://localhost:8080';
+
+            // Let everybody know we found the WebSocket URL!
+            $rootScope.$broadcast('bootstrap', url);
+
+        }};
 
     }]);
 
