@@ -16,18 +16,29 @@ module.exports = function(grunt) {
             },
             build: {
                 src: 'demo/client/js/banter.js',
-                dest: 'dist/banter-1.0.0.min.js'
+                dest: 'dist/banter-<%= pkg.version %>.min.js'
+            }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'nested'
+                },
+                files: {
+                    'dist/banter-<%= pkg.version %>.css': 'demo/client/sass/default.scss'
+                }
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     // Testing.
     grunt.registerTask('test', ['jshint']);
 
     // Build.
-    grunt.registerTask('default', ['jshint', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'sass']);
 
 };
