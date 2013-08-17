@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: saddlebrown url('./../images/subtle-wood.gif') top left;
+  text-align: center;
+}
+
+section.banter {
+  margin: 0 auto;
+  width: 400px;
+  height: 450px;
+  margin-top: 50px;
+
+  div.bootstrap {
+    color: white;
+    text-shadow: 1px 1px 5px black;
+
+    a {
+      color: skyblue;
+      text-decoration: none;
+    }
+
+    h1 {
+      font-weight: normal;
+      font-family: "Lato", sans-serif;
+    }
+
+    h2 {
+      font-weight: normal;
+      font-size: 15px;
+      font-style: italic;
+      font-family: "Times New Roman", serif;
+    }
+  }
+
+  div.window {
+    width: 400px;
+    height: 450px;
+    text-align: left;
+    background-color: white;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .45);
+    padding: 16px;
+
+    div.title {
+      position: relative;
+      padding-left: 45px;
+      background: transparent url('./../images/484.gif') left center no-repeat;
+
+      h1 {
+        font-weight: normal;
+        font-family: "Lato", sans-serif;
+      }
+
+      h2 {
+        font-weight: normal;
+        font-family: "Times New Roman", serif;
+        font-style: italic;
+        font-size: 14px;
+        padding-top: 2px;
+      }
+    }
+
+    div.post {
+      clear: both;
+      margin-top: 16px;
+
+      textarea {
+        width: 376px;
+        border: 1px solid lightgray;
+        padding: 10px;
+      }
+
+      button.submit {
+        width: 100px;
+        border: 0;
+        background-color: dodgerblue;
+        color: white;
+        font-family: "Lato", sans-serif;
+        -webkit-transition: 0.55s all;
+        text-transform: uppercase;
+        padding: 6px;
+        cursor: pointer;
+      }
+
+      button.submit:hover {
+        background-color: black;
+      }
+    }
+
+    ul.messages {
+      list-style-type: none;
+      margin-top: 16px;
+      overflow-x: scroll;
+      height: 384px;
+      position: relative;
+      box-shadow: inset 0 10px 10px -5px rgba(0, 0, 0, .1), inset 0 -10px 10px -5px rgba(0, 0, 0, .1);
+
+      li {
+        padding: 12px;
+        overflow: hidden;
+
+        img {
+          float: left;
+          overflow: hidden;
+          width: 64px;
+          height: 64px;
+          border: 1px solid lightgray;
+          margin-right: 16px;
+        }
+
+        div.message {
+          float: left;
+          overflow: hidden;
+
+          h2 {
+            font-size: 18px;
+            font-weight: normal;
+            font-family: "Lato", sans-serif;
+            color: darkgray;
+
+            span {
+              color: black;
+            }
+          }
+
+          h3 {
+            font-family: "Times New Roman", serif;
+            font-weight: normal;
+            font-size: 12px;
+            font-style: italic;
+            padding-top: 2px;
+          }
+
+          p {
+            font-size: 12px;
+            font-family: Arial, Tahoma, Helvetica;
+            line-height: 18px;
+            color: #666;
+            width: 294px;
+            text-align: justify;
+            padding-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}

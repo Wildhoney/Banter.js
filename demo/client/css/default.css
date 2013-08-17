@@ -1,150 +1,107 @@
 * {
-    margin: 0;
-    padding: 0;
-}
+  margin: 0;
+  padding: 0; }
 
 body {
-    background: saddlebrown url('./../images/subtle-wood.gif') top left;
-    text-align: center;
-}
+  background: saddlebrown url("./../images/subtle-wood.gif") top left;
+  text-align: center; }
 
 section.banter {
-    margin: 0 auto;
-    width: 400px;
-    height: 450px;
-    margin-top: 50px;
-}
-
-section.banter div.bootstrap {
+  margin: 0 auto;
+  width: 400px;
+  height: 450px;
+  margin-top: 50px; }
+  section.banter div.bootstrap {
     color: white;
-    text-shadow: 1px 1px 5px black;
-}
-
-section.banter div.bootstrap h1 {
-    font-weight: normal;
-    font-family: "Lato", sans-serif;
-}
-
-section.banter div.bootstrap h2 {
-    font-weight: normal;
-    font-size: 15px;
-    font-style: italic;
-    font-family: "Times New Roman", serif;
-}
-
-section.banter div.bootstrap a {
-    color: skyblue;
-    text-decoration: none;
-}
-
-section.banter div.window {
+    text-shadow: 1px 1px 5px black; }
+    section.banter div.bootstrap a {
+      color: skyblue;
+      text-decoration: none; }
+    section.banter div.bootstrap h1 {
+      font-weight: normal;
+      font-family: "Lato", sans-serif; }
+    section.banter div.bootstrap h2 {
+      font-weight: normal;
+      font-size: 15px;
+      font-style: italic;
+      font-family: "Times New Roman", serif; }
+  section.banter div.window {
     width: 400px;
     height: 450px;
     text-align: left;
     background-color: white;
-    box-shadow: 0 0 30px rgba(0, 0, 0, .45);
-    padding: 16px;
-}
-
-section.banter div.window div.title {
-    position: relative;
-    padding-left: 45px;
-    background: transparent url('./../images/484.gif') left center no-repeat;
-}
-
-section.banter div.window div.title h1 {
-    font-weight: normal;
-    font-family: "Lato", sans-serif;
-}
-
-section.banter div.window div.title h2 {
-    font-weight: normal;
-    font-family: "Times New Roman", serif;
-    font-style: italic;
-    font-size: 14px;
-    padding-top: 2px;
-}
-
-section.banter div.window ul.messages {
-    list-style-type: none;
-    margin-top: 16px;
-    overflow-x: scroll;
-    height: 384px;
-    position: relative;
-    box-shadow: inset 0 10px 10px -5px rgba(0, 0, 0, .1), inset 0 -10px 10px -5px rgba(0, 0, 0, .1);
-}
-
-section.banter div.window ul.messages li {
-    padding: 12px;
-    overflow: hidden;
-}
-
-section.banter div.window ul.messages li img {
-    float: left;
-    overflow: hidden;
-    width: 64px;
-    height: 64px;
-    border: 1px solid lightgray;
-    margin-right: 16px;
-}
-
-section.banter div.window ul.messages li div.message {
-    float: left;
-    overflow: hidden;
-}
-
-section.banter div.window ul.messages li div.message h2 {
-    font-size: 18px;
-    font-weight: normal;
-    font-family: "Lato", sans-serif;
-    color: darkgray;
-}
-
-section.banter div.window ul.messages li div.message h2 span {
-    color: black;
-}
-
-section.banter div.window ul.messages li div.message h3 {
-    font-family: "Times New Roman", serif;
-    font-weight: normal;
-    font-size: 12px;
-    font-style: italic;
-    padding-top: 2px;
-}
-
-section.banter div.window ul.messages li div.message p {
-    font-size: 12px;
-    font-family: Arial, Tahoma, Helvetica;
-    line-height: 18px;
-    color: #666;
-    width: 294px;
-    text-align: justify;
-    padding-top: 5px;
-}
-
-section.banter div.window div.post {
-    clear: both;
-    margin-top: 16px;
-}
-
-section.banter div.window div.post textarea {
-    width: 376px;
-    border: 1px solid lightgray;
-    padding: 10px;
-}
-
-section.banter div.window div.post button.submit {
-    width: 100px;
-    border: 0;
-    background-color: dodgerblue;
-    color: white;
-    font-family: "Lato", sans-serif;
-    -webkit-transition: 0.55s all;
-    text-transform: uppercase;
-    padding: 6px;
-    cursor: pointer;
-}
-
-section.banter div.window div.post button.submit:hover {
-    background-color: black;
-}
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
+    padding: 16px; }
+    section.banter div.window div.title {
+      position: relative;
+      padding-left: 45px;
+      background: transparent url("./../images/484.gif") left center no-repeat; }
+      section.banter div.window div.title h1 {
+        font-weight: normal;
+        font-family: "Lato", sans-serif; }
+      section.banter div.window div.title h2 {
+        font-weight: normal;
+        font-family: "Times New Roman", serif;
+        font-style: italic;
+        font-size: 14px;
+        padding-top: 2px; }
+    section.banter div.window div.post {
+      clear: both;
+      margin-top: 16px; }
+      section.banter div.window div.post textarea {
+        width: 376px;
+        border: 1px solid lightgray;
+        padding: 10px; }
+      section.banter div.window div.post button.submit {
+        width: 100px;
+        border: 0;
+        background-color: dodgerblue;
+        color: white;
+        font-family: "Lato", sans-serif;
+        -webkit-transition: 0.55s all;
+        text-transform: uppercase;
+        padding: 6px;
+        cursor: pointer; }
+      section.banter div.window div.post button.submit:hover {
+        background-color: black; }
+    section.banter div.window ul.messages {
+      list-style-type: none;
+      margin-top: 16px;
+      overflow-x: scroll;
+      height: 384px;
+      position: relative;
+      box-shadow: inset 0 10px 10px -5px rgba(0, 0, 0, 0.1), inset 0 -10px 10px -5px rgba(0, 0, 0, 0.1); }
+      section.banter div.window ul.messages li {
+        padding: 12px;
+        overflow: hidden; }
+        section.banter div.window ul.messages li img {
+          float: left;
+          overflow: hidden;
+          width: 64px;
+          height: 64px;
+          border: 1px solid lightgray;
+          margin-right: 16px; }
+        section.banter div.window ul.messages li div.message {
+          float: left;
+          overflow: hidden; }
+          section.banter div.window ul.messages li div.message h2 {
+            font-size: 18px;
+            font-weight: normal;
+            font-family: "Lato", sans-serif;
+            color: darkgray; }
+            section.banter div.window ul.messages li div.message h2 span {
+              color: black; }
+          section.banter div.window ul.messages li div.message h3 {
+            font-family: "Times New Roman", serif;
+            font-weight: normal;
+            font-size: 12px;
+            font-style: italic;
+            padding-top: 2px; }
+          section.banter div.window ul.messages li div.message p {
+            font-size: 12px;
+            font-family: Arial, Tahoma, Helvetica;
+            line-height: 18px;
+            color: #666;
+            width: 294px;
+            text-align: justify;
+            padding-top: 5px; }
