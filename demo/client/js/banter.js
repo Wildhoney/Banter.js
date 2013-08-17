@@ -4,13 +4,44 @@
     $w.banterApp = angular.module('banterApp', []);
 
     /**
+     * @factory $logger
+     * @type {Function}
+     * Responsible for logging items to the console for debugging purposes, which is especially
+     * useful for when developers extend/modify Banter.js.
+     * @return {Object}
+     */
+    banterApp.factory('$logger', function($rootScope) {
+
+        var service = {};
+
+        /**
+         * @method log
+         * Wrapper for console.log.
+         */
+        service.log = function log(message) {
+            console.log('Banter.js @ ' + moment().format('HH:mm:ss') + ' - ' + message);
+        };
+
+        /**
+         * @method error
+         * Wrapper for console.error.
+         */
+        service.error = function log(message) {
+            console.error('Banter.js @ ' + moment().format('HH:mm:ss') + ' - ' + message);
+        };
+
+        return service;
+
+    });
+
+    /**
      * @factory $webSocket
      * @type {Function}
      * WebSocket adapter for communicating with the Ruby Em-WebSocket server. Listens
      * for messages, sends messages, emits events when certain events happen on the server.
      * @return {Object}
      */
-    banterApp.factory('$webSocket', function($rootScope) {
+    banterApp.factory('$webSocket', function($rootScope, $logger) {
 
         var service = {};
 
@@ -38,7 +69,7 @@
              * @return {void}
              */
             ws.onopen = function onopen() {
-                console.log('Client: Banter.js Connected, Sugar!');
+                $logger.log('Banter.js Connected, Sugar!');
                 ws.send('Server: Client Connected at ' + moment().format('HH:mm:ss'));
                 $rootScope.$broadcast('connected');
             };
@@ -48,7 +79,7 @@
              * @return {void}
              */
             ws.onerror = function onerror() {
-                console.error('Client: An Error Occurred, Petal!');
+                $logger.error('Client Threw an Error, Petal!');
             };
 
             /**
@@ -58,6 +89,7 @@
              * @return {void}
              */
             ws.onmessage = function onmessage(messageEvent) {
+                $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
                 $rootScope.$broadcast('receivedMessage', messageEvent);
             }
 
@@ -71,8 +103,14 @@
          * @return {void}
          */
         $rootScope.$on('sendMessage', function sendMessage(event, data) {
+
+            var json = JSON.stringify(data);
+
+            $logger.log('Message Sent (' + json.length + ' Characters), Cherry...');
+
             // Send the message to the Ruby server!
-            $rootScope.webSocket.send(JSON.stringify(data));
+            $rootScope.webSocket.send(json);
+
         });
 
         return service;
@@ -84,7 +122,7 @@
      * @type {Function}
      */
     banterApp.controller('ApplicationController',
-    ['$scope', '$webSocket', function ApplicationController($scope, $webSocket) {
+    ['$scope', '$webSocket', '$logger', function ApplicationController($scope, $webSocket, $logger) {
 
         /**
          * @property connected
@@ -116,7 +154,7 @@
          */
         $scope.$on('bootstrap', function bootstrap(event, url) {
 
-            console.log('Client: Bootstrapping Banter.js: ' + url);
+            $logger.log('Client Connecting: ' + url);
 
             // Connect to the Ruby WebSocket server.
             $webSocket.connect('ws://localhost:8080');
@@ -129,8 +167,10 @@
          * @return {void}
          */
         $scope.$on('connected', function connected() {
+
             $scope.connected = true;
             $scope.$apply();
+
         });
 
         /**
