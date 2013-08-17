@@ -7,7 +7,7 @@ require 'json'
 require 'digest/md5'
 
 # Now both libraries are in the $LOAD_PATH ($:) we can load them.
-#require_relative 'vendor/Ruby-IRC/lib/IRC.rb'
+require_relative 'vendor/Ruby-IRC/lib/IRC.rb'
 require_relative 'vendor/em-websocket/lib/em-websocket.rb'
 
 #require ('Ruby-IRC/lib/IRC.rb');
@@ -17,6 +17,13 @@ require_relative 'lib/default'
 
 # Initialise the WebSocket on port 8080.
 EventMachine::WebSocket.start(:host => '0.0.0.0', :port => 8080) do |websocket|
+
+  #bot = IRC.new("BlahBlahdsfj", "irc.freenode.net", "6667", "Adam Timberlake")
+  #IRCEvent.add_callback('endofmotd') { |event| bot.add_channel('#banter-test') }
+  #IRCEvent.add_callback('join') { |event|
+  #  bot.send_message(event.channel, "Hello #{event.from}")
+  #}
+  #bot.connect
 
   websocket.onopen {
     puts "Banter.js Initialised..."
@@ -36,7 +43,7 @@ EventMachine::WebSocket.start(:host => '0.0.0.0', :port => 8080) do |websocket|
   #websocket.onmessage { |msg| websocket.send "Pong: #{msg}" }
   #websocket.onclose   { puts "WebSocket closed" }
 
-  #banter = Banter::Base.new('Adam', 'irc.freenode.net', 'banter-test', 6667)
+  banter = Banter::Base.new('BanterJS-Adam', 'irc.freenode.net', 'banter-test', 6667)
   ##banter.send_message 'Hello all!'
 
 end

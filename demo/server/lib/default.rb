@@ -17,7 +17,6 @@ module Banter
 
       # Add a callback for when the MotD has been displayed -- we'll then join the channel specified.
       IRCEvent.add_callback('endofmotd') { |event|
-        print 'Test'
         @bot.add_channel('#'.concat(channel))
       }
 
