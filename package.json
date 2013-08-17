@@ -1,0 +1,14 @@
+{
+  "name": "BanterJS",
+  "version": "1.0.0",
+  "author": "Adam Timberlake",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:Wildhoney/BanterJS.git"
+  },
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}

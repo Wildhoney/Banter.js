@@ -10,7 +10,7 @@
      * useful for when developers extend/modify Banter.js.
      * @return {Object}
      */
-    banterApp.factory('$logger', function($rootScope) {
+    banterApp.factory('$logger', ['$rootScope', function($rootScope) {
 
         var service = {};
 
@@ -32,7 +32,7 @@
 
         return service;
 
-    });
+    }]);
 
     /**
      * @factory $webSocket
@@ -41,7 +41,7 @@
      * for messages, sends messages, emits events when certain events happen on the server.
      * @return {Object}
      */
-    banterApp.factory('$webSocket', function($rootScope, $logger) {
+    banterApp.factory('$webSocket', ['$rootScope', '$logger', function($rootScope, $logger) {
 
         var service = {};
 
@@ -91,7 +91,7 @@
             ws.onmessage = function onmessage(messageEvent) {
                 $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
                 $rootScope.$broadcast('receivedMessage', messageEvent);
-            }
+            };
 
         };
 
@@ -115,7 +115,7 @@
 
         return service;
 
-    });
+    }]);
 
     /**
      * @controller ApplicationController
@@ -205,7 +205,7 @@
         $scope.sendMessage = function sendMessage(message) {
             $scope.$emit('sendMessage', { name: 'Wildhoney', message: message });
             // Send the message to the awaiting WebSocket server!
-        }
+        };
 
     }]);
 
@@ -222,8 +222,8 @@
         return { restrict: 'C', link: function linkFn($attrs) {
 
             // Find the URL from the attribute, otherwise assume the default.
-            var url = (typeof $attrs.websocketServer !== 'undefined')
-                    ? $attrs.websocketServer : 'ws://localhost:8080';
+            var url = (typeof $attrs.websocketServer !== 'undefined')   ? $attrs.websocketServer
+                                                                        : 'ws://localhost:8080';
 
             // Let everybody know we found the WebSocket URL!
             $rootScope.$broadcast('bootstrap', url);
