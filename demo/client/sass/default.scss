@@ -1,10 +1,12 @@
+$assets-path: './../demo/client/images';
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: saddlebrown url('./../images/subtle-wood.gif') top left;
+  background: white url('#{$assets-path}/subtle-wood.gif') top left;
   text-align: center;
 }
 
@@ -49,7 +51,7 @@ section.banter {
       padding: 35px 0 0 130px;
       box-sizing: border-box;
       height: 128px;
-      background: transparent url('./../images/1376790904_teddy_bear_toy_4.png') -15px center no-repeat;
+      background: transparent url('#{$assets-path}/1376790904_teddy_bear_toy_4.png') -15px center no-repeat;
 
       h1 {
         font-weight: normal;

@@ -3,7 +3,7 @@
   padding: 0; }
 
 body {
-  background: saddlebrown url("./../images/subtle-wood.gif") top left;
+  background: white url("./../demo/client/images/subtle-wood.gif") top left;
   text-align: center; }
 
 section.banter {
@@ -37,7 +37,7 @@ section.banter {
       padding: 35px 0 0 130px;
       box-sizing: border-box;
       height: 128px;
-      background: transparent url("./../images/1376790904_teddy_bear_toy_4.png") -15px center no-repeat; }
+      background: transparent url("./../demo/client/images/1376790904_teddy_bear_toy_4.png") -15px center no-repeat; }
       section.banter div.window div.title h1 {
         font-weight: normal;
         font-family: "Lato", sans-serif; }
