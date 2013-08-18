@@ -14,6 +14,11 @@ Libraries
  * <strong>Angular</strong> &ndash; MVC JavaScript framework with EDA: https://github.com/angular/angular.js
 
 
+Sass
+---------
+
+By running `grunt` the Sass stylesheet will be processed and a CSS file created in `dist`. If you want to update the path to the images directory, then you can do that in the `default.scss` file by changing `$assets-path` and then running `grunt`.
+
 Screenshots
 ---------
 
