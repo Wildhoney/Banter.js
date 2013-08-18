@@ -99,12 +99,12 @@
                 var data = $j.parseJSON(messageEvent.data);
 
                 if (data.command) {
-                    $logger.log('Command Received (' + data.length + ' Characters), Honey...');
+                    $logger.log('Command Received (' + messageEvent.data.length + ' Characters), Honey...');
                     $rootScope.$broadcast('receivedCommand', data);
                     return;
                 }
 
-                $logger.log('Message Received (' + data.length + ' Characters), Sweetie...');
+                $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
                 $rootScope.$broadcast('receivedMessage', data);
             };
 
