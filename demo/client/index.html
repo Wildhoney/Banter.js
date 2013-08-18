@@ -3,7 +3,7 @@
 <head>
     <title>Banter.js Demo</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="./css/default.css" />
+    <link rel="stylesheet" type="text/css" href="./../../dist/banter-1.0.0.css" />
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="./js/vendor/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="./js/vendor/moment-2.1.0.js"></script>
@@ -38,9 +38,9 @@
                 <li ng-repeat="message in messages">
                     <img src="http://2.gravatar.com/avatar/{{hash}}" />
                     <div class="message">
-                        <h2><span>Wildhoney</span> muttered:</h2>
+                        <h2><span>{{message.name}}</span> says:</h2>
                         <h3>9th of Jan, 01:15:32</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras elementum purus sed velit laoreet, et feugiat ligula venenatis. Donec sollicitudin a lorem sed volutpat. Mauris et molestie mi. Etiam lacinia dignissim luctus. Vestibulum sit amet elementum mi. Nulla ante dui, porttitor at elementum et, dignissim eget felis.</p>
+                        <p>{{message.message}}</p>
                     </div>
                 </li>
             </ul>

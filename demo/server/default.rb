@@ -1,8 +1,4 @@
-# Update our $LOAD_PATH to include Ruby-IRC and Em-Websocket.
-$:.unshift File.dirname(__FILE__).concat('/vendor/Ruby-IRC/lib/')
-#$:.unshift File.dirname(__FILE__).concat('/vendor/em-websocket/lib/')
-
-# Our native dependencies.
+# Our dependencies.
 require 'rubygems'
 require 'eventmachine'
 require 'ponder'
@@ -11,30 +7,31 @@ require 'em-websocket'
 require 'em-promise'
 require 'digest/md5'
 
-#require ('Ruby-IRC/lib/IRC.rb');
-
 # We'll also include our Banter API module.
 require_relative 'lib/default'
 
 EM.run do
   EventMachine::WebSocket.start(:host => '0.0.0.0', :port => 8080) do |websocket|
 
-      irc = Ponder::Thaum.new do |config|
-        config.nick   = 'BanterEMAdam'
-        config.server = 'irc.freenode.net'
-        config.port   = 6667
-      end
+    # Create an instance of the Banter.js server!
+    banter = Banter.new
 
-      irc.on :connect do
-        irc.join '#banter-test'
-      end
+    # Using promises we'll connect to the IRC server, join the channel, and then
+    # resolve our promise -- updating the client connected via WebSockets.
+    banter.connect('BanterEM-Adam', 'irc.freenode.net', 6667, '#banter-test').then {
+      websocket.send({ :command => true, :connected => true }.to_json)
+    }
 
-      irc.on :join do |data|
-        websocket.send({ :command => true, :connected => true }.to_json)
-        user = data[:join].user
-      end
+    # Configure the responding to messages.
+    banter.irc.on :channel do |event|
+      websocket.send({ :command => false, :name => event[:user], :message => event[:message] }.to_json)
+    end
 
-      irc.connect
+    websocket.onmessage { |data|
+      # When a message is received we'll send that to the IRC channel!
+      message = JSON.parse data
+      banter.send_message message['message']
+    }
 
     end
 end

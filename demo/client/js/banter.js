@@ -70,7 +70,7 @@
              */
             ws.onopen = function onopen() {
                 $logger.log('Banter.js Connected, Sugar!');
-                ws.send('Server: Client Connected at ' + moment().format('HH:mm:ss'));
+//                ws.send('Server: Client Connected at ' + moment().format('HH:mm:ss'));
                 $rootScope.$broadcast('connected');
             };
 
@@ -123,7 +123,7 @@
 
             $logger.log('Message Sent (' + json.length + ' Characters), Cherry...');
 
-            // Send the message to the Ruby server!
+            // Send the message to the awaiting WebSocket server!
             $rootScope.webSocket.send(json);
 
         });
@@ -195,7 +195,7 @@
         $scope.$on('receivedMessage', function receivedMessage(event, data) {
             // We've received a message, so we'll push it into the collection
             // of messages!
-            $scope.messages.push(data);
+            $scope.messages.unshift(data);
             $scope.$apply();
             return true;
 
@@ -224,8 +224,10 @@
          * @return {void}
          */
         $scope.sendMessage = function sendMessage(message) {
-            $scope.$emit('sendMessage', { name: 'Wildhoney', message: message });
-            // Send the message to the awaiting WebSocket server!
+            var data = { name: 'Adam', message: message };
+            $scope.messages.unshift(data);
+            $scope.message = '';
+            $scope.$emit('sendMessage', data);
         };
 
     }]);
