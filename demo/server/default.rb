@@ -24,7 +24,7 @@ EM.run do
 
     # Configure the responding to messages.
     banter.irc.on :channel do |event|
-      websocket.send({ :command => false, :name => event[:user], :message => event[:message] }.to_json)
+      websocket.send({ :command => false, :name => event[:user].sub!('~', ''), :message => event[:message] }.to_json)
     end
 
     websocket.onmessage { |data|
