@@ -87,13 +87,23 @@ section.banter {
         height: 50px;
         border: 0;
         float: left;
-        background-color: lightseagreen;
+        background-color: lightgray;
         color: white;
         font-family: "Lato", sans-serif;
-        -webkit-transition: 0.55s all;
         text-transform: uppercase;
         padding: 6px;
         cursor: pointer;
+        pointer-events: none;
+
+        transition: 0.55s all;
+        -o-transition: 0.55s all;
+        -moz-transition: 0.55s all;
+        -webkit-transition: 0.55s all;
+      }
+
+      button.submit.connected {
+        background-color: lightseagreen;
+        pointer-events: all;
       }
 
       button.submit:hover {
