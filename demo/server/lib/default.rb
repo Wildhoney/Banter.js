@@ -5,23 +5,32 @@ module Banter
     @bot
     @channel
 
-    #method initialize
+    #method connect
     #param name {String}
+    #param server {String}
+    #param channel {String}
+    #param port {Number}
     #constructor
-    def initialize(name, server, channel, port)
+    def connect(name, server, channel, port)
 
+      deferred = EM::Q.defer
       @channel = channel
 
-      # Instantiate the IRC class passing in the params.
-      @bot = IRC.new(name, server, port, 'Banter.js Client')
+      irc = Net::YAIL.new(
+          :address    => 'irc.freenode.net',
+          :port       => 6667,
+          :username   => 'Banter-Adam',
+          :realname   => 'Adam Timberlake',
+          :nicknames  => ['Banter-Adam2', 'Banter-Adam3', 'Banter-Adam4']
+      )
 
-      # Add a callback for when the MotD has been displayed -- we'll then join the channel specified.
-      IRCEvent.add_callback('endofmotd') { |event|
-        @bot.add_channel('#'.concat(channel))
+      irc.on_welcome proc { |event|
+        print 'Well...'
+        irc.join('#banter-test')
+        deferred.resolve('Connected')
       }
 
-      # Finally we connect to the IRC server!
-      @bot.connect
+      deferred.promise
 
     end
 

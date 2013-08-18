@@ -89,8 +89,23 @@
              * @return {void}
              */
             ws.onmessage = function onmessage(messageEvent) {
-                $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
-                $rootScope.$broadcast('receivedMessage', messageEvent);
+
+                if (typeof $j === 'undefined') {
+                    // We don't have jQuery so unfortunately we can't decode the JSON.
+                    console.error('Please install jQuery to continue using Banter.js.');
+                    return false;
+                }
+
+                var data = $j.parseJSON(messageEvent.data);
+
+                if (data.command) {
+                    $logger.log('Command Received (' + data.length + ' Characters), Honey...');
+                    $rootScope.$broadcast('receivedCommand', data);
+                    return;
+                }
+
+                $logger.log('Message Received (' + data.length + ' Characters), Sweetie...');
+                $rootScope.$broadcast('receivedMessage', data);
             };
 
         };
@@ -167,32 +182,38 @@
          * @return {void}
          */
         $scope.$on('connected', function connected() {
-
-            $scope.connected = true;
-            $scope.$apply();
-
+            // Noop
         });
 
         /**
          * @event receivedMessage
          * @param event {Object}
-         * @param messageEvent {Object}
+         * @param data {Object}
          * When the client receives a message from the server.
          * @return {Boolean}
          */
-        $scope.$on('receivedMessage', function receivedMessage(event, messageEvent) {
-
-            if (typeof $j === 'undefined') {
-                // We don't have jQuery so unfortunately we can't decode the JSON.
-                console.error('Please install jQuery to continue using Banter.js.');
-                return false;
-            }
-
+        $scope.$on('receivedMessage', function receivedMessage(event, data) {
             // We've received a message, so we'll push it into the collection
             // of messages!
-            $scope.messages.push($.parseJSON(messageEvent.data));
+            $scope.messages.push(data);
             $scope.$apply();
             return true;
+
+        });
+
+        /**
+         * @event receivedCommand
+         * @param event {Object}
+         * @param data {Object}
+         * When the client receives a command from the server.
+         * @return {Boolean}
+         */
+        $scope.$on('receivedCommand', function receivedCommand(event, data) {
+
+            if (data.connected) {
+                $scope.connected = true;
+                $scope.$apply();
+            }
 
         });
 

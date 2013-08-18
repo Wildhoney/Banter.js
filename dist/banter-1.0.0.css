@@ -34,8 +34,10 @@ section.banter {
     padding: 16px; }
     section.banter div.window div.title {
       position: relative;
-      padding-left: 45px;
-      background: transparent url("./../images/484.gif") left center no-repeat; }
+      padding: 35px 0 0 130px;
+      box-sizing: border-box;
+      height: 128px;
+      background: transparent url("./../images/1376790904_teddy_bear_toy_4.png") -15px center no-repeat; }
       section.banter div.window div.title h1 {
         font-weight: normal;
         font-family: "Lato", sans-serif; }
@@ -47,15 +49,22 @@ section.banter {
         padding-top: 2px; }
     section.banter div.window div.post {
       clear: both;
-      margin-top: 16px; }
+      margin-top: 16px;
+      overflow: hidden; }
       section.banter div.window div.post textarea {
-        width: 376px;
+        width: 270px;
+        height: 50px;
+        box-sizing: border-box;
+        float: left;
         border: 1px solid lightgray;
         padding: 10px; }
       section.banter div.window div.post button.submit {
+        margin-left: 5px;
         width: 100px;
+        height: 50px;
         border: 0;
-        background-color: dodgerblue;
+        float: left;
+        background-color: lightseagreen;
         color: white;
         font-family: "Lato", sans-serif;
         -webkit-transition: 0.55s all;
