@@ -19,12 +19,19 @@ EM.run do
     # Using promises we'll connect to the IRC server, join the channel, and then
     # resolve our promise -- updating the client connected via WebSockets.
     banter.connect('BanterEM-Adam', 'irc.freenode.net', 6667, '#banter-test').then {
-      websocket.send({ :command => true, :connected => true }.to_json)
+      websocket.send({
+        :command    => true,
+        :connected  => true,
+        :gravatar   => Digest::MD5.hexdigest('adam.timberlake@gmail.com')
+      }.to_json)
     }
 
     # Configure the responding to messages.
     banter.irc.on :channel do |event|
-      websocket.send({ :command => false, :name => event[:user].sub!('~', ''), :message => event[:message] }.to_json)
+      websocket.send({
+        :command  => false,
+        :name     => event[:user].sub!('~', ''),
+        :message  => event[:message] }.to_json)
     end
 
     websocket.onmessage { |data|

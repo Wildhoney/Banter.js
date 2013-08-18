@@ -161,6 +161,13 @@
         $scope.message = '';
 
         /**
+         * @property gravatar
+         * @type {String}
+         * @default ''
+         */
+        $scope.gravatar = '';
+
+        /**
          * @event bootstrap
          * @param event {Object}
          * @param url {String}
@@ -211,6 +218,7 @@
         $scope.$on('receivedCommand', function receivedCommand(event, data) {
 
             if (data.connected) {
+                $scope.gravatar = data.gravatar;
                 $scope.connected = true;
                 $scope.$apply();
             }
@@ -224,7 +232,7 @@
          * @return {void}
          */
         $scope.sendMessage = function sendMessage(message) {
-            var data = { name: 'Adam', message: message };
+            var data = { name: 'Adam', message: message, gravatar: $scope.gravatar };
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);
