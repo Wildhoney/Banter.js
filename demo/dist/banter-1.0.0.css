@@ -121,16 +121,22 @@ section.banter {
             height: 40px;
             line-height: 40px; }
           section.banter div.window ul.messages li.error button.retry {
-            background-color: pink;
+            background-color: white;
             border: 0;
             float: right;
-            color: white;
+            color: pink;
             text-transform: uppercase;
             font-family: "Lato", sans-serif;
             width: 80px;
             height: 40px;
             cursor: pointer;
-            line-height: 40px; }
+            line-height: 40px;
+            transition: 0.55s all;
+            -o-transition: 0.55s all;
+            -moz-transition: 0.55s all;
+            -webkit-transition: 0.55s all; }
+            section.banter div.window ul.messages li.error button.retry:hover {
+              background-color: black; }
         section.banter div.window ul.messages li img {
           float: left;
           overflow: hidden;

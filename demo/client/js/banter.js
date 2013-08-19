@@ -155,6 +155,13 @@
         $scope.status = 'Connecting...';
 
         /**
+         * @property error
+         * @type {Boolean}
+         * @default false
+         */
+        $scope.error = false;
+
+        /**
          * @property messages
          * @type {Array}
          * @default []
@@ -204,7 +211,8 @@
         $scope.connect = function connect() {
 
             // Connect to the Ruby WebSocket server.
-            $scope.status = 'Connecting...';
+            $scope.status   = 'Connecting...';
+            $scope.error    = false;
             $webSocket.connect('ws://localhost:8080');
 
         };
@@ -224,7 +232,8 @@
          * @return {void}
          */
         $scope.$on('error', function error() {
-            $scope.status = 'Failed';
+            $scope.status   = 'Failed';
+            $scope.error    = true;
             $scope.$apply();
         });
 
