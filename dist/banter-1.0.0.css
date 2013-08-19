@@ -92,11 +92,14 @@ section.banter {
         -o-transition: 0.55s all;
         -moz-transition: 0.55s all;
         -webkit-transition: 0.55s all; }
-      section.banter div.window div.post button.submit.connected {
-        background-color: lightseagreen;
-        pointer-events: all; }
-      section.banter div.window div.post button.submit:hover {
-        background-color: black; }
+        section.banter div.window div.post button.submit.connected {
+          background-color: lightseagreen;
+          opacity: .45; }
+          section.banter div.window div.post button.submit.connected.send {
+            opacity: 1;
+            pointer-events: all; }
+          section.banter div.window div.post button.submit.connected:hover {
+            background-color: black; }
     section.banter div.window ul.messages {
       list-style-type: none;
       margin-top: 16px;

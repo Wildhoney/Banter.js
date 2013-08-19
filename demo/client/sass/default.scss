@@ -121,15 +121,20 @@ section.banter {
         -o-transition: 0.55s all;
         -moz-transition: 0.55s all;
         -webkit-transition: 0.55s all;
-      }
 
-      button.submit.connected {
-        background-color: lightseagreen;
-        pointer-events: all;
-      }
+        &.connected {
+          background-color: lightseagreen;
+          opacity: .45;
 
-      button.submit:hover {
-        background-color: black;
+          &.send {
+            opacity: 1;
+            pointer-events: all;
+          }
+
+          &:hover {
+            background-color: black;
+          }
+        }
       }
     }
 

@@ -30,7 +30,7 @@
 
             <div class="post">
                 <textarea ng-model="message" placeholder="Здравствуйте Comrade! What's the matter?"></textarea>
-                <button class="submit" ng-click="sendMessage(message)" ng-class="{connected: connected}">
+                <button class="submit" ng-click="sendMessage(message)" ng-class="{connected: connected, send: message.length}">
                     <span ng-hide="connected">{{status}}</span>
                     <span ng-show="connected">Fly Away&hellip;</span>
                 </button>
