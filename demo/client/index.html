@@ -37,6 +37,10 @@
             </div>
 
             <ul class="messages">
+                <li class="error" ng-hide="connected">
+                    <p>Banter.js cannot connect to the server.</p>
+                    <button ng-click="connect()" class="retry">Retry</button>
+                </li>
                 <li ng-repeat="message in messages">
                     <img src="http://2.gravatar.com/avatar/{{gravatar}}" />
                     <div class="message">

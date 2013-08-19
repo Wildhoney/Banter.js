@@ -76,9 +76,11 @@
 
             /**
              * @method onerror
+             * @emits error
              * @return {void}
              */
             ws.onerror = function onerror() {
+                $rootScope.$broadcast('error');
                 $logger.error('Client Threw an Error, Petal!');
             };
 
@@ -174,6 +176,13 @@
         $scope.gravatar = '';
 
         /**
+         * @property url
+         * @type {String}
+         * @default ''
+         */
+        $scope.url = '';
+
+        /**
          * @event bootstrap
          * @param event {Object}
          * @param url {String}
@@ -182,13 +191,23 @@
          */
         $scope.$on('bootstrap', function bootstrap(event, url) {
 
-            $logger.log('Client Connecting: ' + url);
-            $scope.status = 'Connecting...';
+            // Store the URL that we got from the node's attribute.
+            $scope.url = url;
 
-            // Connect to the Ruby WebSocket server.
-            $webSocket.connect('ws://localhost:8080');
+            $logger.log('Client Connecting: ' + url);
+
+            // Connect!
+            $scope.connect();
 
         });
+
+        $scope.connect = function connect() {
+
+            // Connect to the Ruby WebSocket server.
+            $scope.status = 'Connecting...';
+            $webSocket.connect('ws://localhost:8080');
+
+        };
 
         /**
          * @event connected
@@ -197,6 +216,16 @@
          */
         $scope.$on('connected', function connected() {
             // Noop
+        });
+
+        /**
+         * @event error
+         * When an error occurs when connecting to the IRC server.
+         * @return {void}
+         */
+        $scope.$on('error', function error() {
+            $scope.status = 'Failed';
+            $scope.$apply();
         });
 
         /**

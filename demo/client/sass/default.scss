@@ -145,6 +145,42 @@ section.banter {
         padding: 12px;
         overflow: hidden;
 
+        &.error {
+          font-family: "Times New Roman", serif;
+          font-style: italic;
+          background-color: lightpink;
+          color: white;
+          margin: 20px 10px 0 10px;
+
+          p {
+            float: left;
+            height: 40px;
+            line-height: 40px;
+          }
+
+          button.retry {
+            background-color: pink;
+            border: 0;
+            float: right;
+            color: white;
+            text-transform: uppercase;
+            font-family: "Lato", sans-serif;
+            width: 80px;
+            height: 40px;
+            cursor: pointer;
+            line-height: 40px;
+
+            transition: 0.55s all;
+            -o-transition: 0.55s all;
+            -moz-transition: 0.55s all;
+            -webkit-transition: 0.55s all;
+
+            &:hover {
+              background-color: black;
+            }
+          }
+        }
+
         img {
           float: left;
           overflow: hidden;

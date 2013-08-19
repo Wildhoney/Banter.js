@@ -108,32 +108,8 @@ section.banter {
         padding: 12px;
         overflow: hidden; }
         section.banter div.window ul.messages li.error {
-          font-family: "Times New Roman", serif;
-          font-style: italic;
-          background-color: lightpink;
-          color: white;
-          margin: 20px 10px 0 10px; }
-          section.banter div.window ul.messages li.error p {
-            float: left;
-            height: 40px;
-            line-height: 40px; }
-          section.banter div.window ul.messages li.error button.retry {
-            background-color: pink;
-            border: 0;
-            float: right;
-            color: white;
-            text-transform: uppercase;
-            font-family: "Lato", sans-serif;
-            width: 80px;
-            height: 40px;
-            cursor: pointer;
-            line-height: 40px;
-            transition: 0.55s all;
-            -o-transition: 0.55s all;
-            -moz-transition: 0.55s all;
-            -webkit-transition: 0.55s all; }
-            section.banter div.window ul.messages li.error button.retry:hover {
-              background-color: black; }
+          background-color: firebrick;
+          color: white !important; }
         section.banter div.window ul.messages li img {
           float: left;
           overflow: hidden;
