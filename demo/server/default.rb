@@ -16,6 +16,12 @@ EM.run do
     # Create an instance of the Banter.js server!
     banter = Banter.new
 
+    # When the client closes the browser, then we'll need to remove them from
+    # the IRC channel.
+    websocket.onclose {
+      banter.irc.quit
+    }
+
     # Using promises we'll connect to the IRC server, join the channel, and then
     # resolve our promise -- updating the client connected via WebSockets.
     banter.connect('BanterEM-Adam', 'irc.freenode.net', 6667, '#banter-test').then {
@@ -37,7 +43,13 @@ EM.run do
     websocket.onmessage { |data|
       # When a message is received we'll send that to the IRC channel!
       message = JSON.parse data
-      banter.send_message message['message']
+
+      # Disconnect from the server if the client sent message.command message.disconnect to true.
+      if message['command'] && message['disconnect']
+        banter.irc.quit
+      elsif
+        banter.send_message message['message']
+      end
     }
 
     end

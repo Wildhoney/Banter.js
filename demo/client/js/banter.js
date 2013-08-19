@@ -147,6 +147,12 @@
         $scope.connected = false;
 
         /**
+         * @property status
+         * @type {string}
+         */
+        $scope.status = 'Connecting...';
+
+        /**
          * @property messages
          * @type {Array}
          * @default []
@@ -177,6 +183,7 @@
         $scope.$on('bootstrap', function bootstrap(event, url) {
 
             $logger.log('Client Connecting: ' + url);
+            $scope.status = 'Connecting...';
 
             // Connect to the Ruby WebSocket server.
             $webSocket.connect('ws://localhost:8080');
@@ -224,6 +231,18 @@
             }
 
         });
+
+        /**
+         * @method disconnect
+         * @emits sendMessage
+         * @return {void}
+         */
+        $scope.disconnect = function disconnect() {
+            var data = { command: true, disconnect: true };
+            $scope.connected = false;
+            $scope.status = 'Disconnected';
+            $scope.$emit('sendMessage', data);
+        };
 
         /**
          * @method sendMessage

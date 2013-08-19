@@ -26,10 +26,12 @@
                 <h2>p.s.: You're using <a href="https://github.com/Wildhoney/Banter.js">Banter.js</a>, sunshine!</h2>
             </div>
 
+            <div class="close" ng-click="disconnect()">&times;</div>
+
             <div class="post">
                 <textarea ng-model="message" placeholder="Здравствуйте Comrade! What's the matter?"></textarea>
                 <button class="submit" ng-click="sendMessage(message)" ng-class="{connected: connected}">
-                    <span ng-hide="connected">Connecting&hellip;</span>
+                    <span ng-hide="connected">{{status}}</span>
                     <span ng-show="connected">Fly Away&hellip;</span>
                 </button>
             </div>

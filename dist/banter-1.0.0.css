@@ -28,6 +28,7 @@ section.banter {
   section.banter div.window {
     width: 400px;
     height: 450px;
+    position: relative;
     text-align: left;
     background-color: white;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.45);
@@ -47,6 +48,22 @@ section.banter {
         font-style: italic;
         font-size: 14px;
         padding-top: 2px; }
+    section.banter div.window div.close {
+      height: 20px;
+      width: 20px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      text-align: center;
+      color: darkgray;
+      cursor: pointer;
+      transition: all .45s;
+      -o-transition: all .45s;
+      -moz-transition: all .45s;
+      -webkit-transition: all .45s; }
+      section.banter div.window div.close:hover {
+        background-color: lightseagreen;
+        color: white; }
     section.banter div.window div.post {
       clear: both;
       margin-top: 16px;
