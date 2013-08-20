@@ -106,6 +106,7 @@
                     return;
                 }
 
+                console.log(messageEvent.data);
                 $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
                 $rootScope.$broadcast('receivedMessage', data);
             };
@@ -154,11 +155,21 @@
          * @type {String}
          * @default ''
          */
-        $scope.username = '';
+        $scope.username = sessionStorage.getItem('username') || '';
 
-        $scope.registerUsername = function() {
+        /**
+         * @method registerUsername
+         * @return {void}
+         */
+        $scope.registerUsername = function registerUsername() {
+
+            // Use session storage to retain the username.
+            sessionStorage.setItem('username', $scope.username);
+
+            // We can then set the username on the parent, and connect to the IRC server!
             $scope.$parent.username = 'Banter-' + $scope.username;
             $scope.$parent.connect();
+
         };
 
     }]);
@@ -322,7 +333,7 @@
          * @return {void}
          */
         $scope.sendMessage = function sendMessage(message) {
-            var data = { name: 'Adam', message: message, gravatar: $scope.gravatar };
+            var data = { name: $scope.username, message: message, gravatar: $scope.gravatar };
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);

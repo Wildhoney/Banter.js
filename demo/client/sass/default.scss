@@ -227,6 +227,11 @@ section.banter {
   div.conversation.disabled {
     -webkit-filter: blur(2px);
     pointer-events: none;
+
+    transition: 0.55s all;
+    -o-transition: 0.55s all;
+    -moz-transition: 0.55s all;
+    -webkit-transition: 0.55s all;
   }
 
   div.register {
