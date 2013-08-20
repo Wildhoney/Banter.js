@@ -130,7 +130,36 @@
 
         });
 
+        $rootScope.$on('setUsername', function (event, username) {
+
+            var json = JSON.stringify({ command: true, username: username });
+
+            // Set the username on the server!
+            $rootScope.webSocket.send(json);
+
+        });
+
         return service;
+
+    }]);
+
+    /**
+     * @controller RegisterController
+     * @type {Function}
+     */
+    banterApp.controller('RegisterController', ['$scope', function($scope) {
+
+        /**
+         * @property username
+         * @type {String}
+         * @default ''
+         */
+        $scope.username = '';
+
+        $scope.registerUsername = function() {
+            $scope.$parent.username = 'Banter-' + $scope.username;
+            $scope.$parent.connect();
+        };
 
     }]);
 
@@ -190,6 +219,13 @@
         $scope.url = '';
 
         /**
+         * @property username
+         * @type {String}
+         * @default ''
+         */
+        $scope.username = '';
+
+        /**
          * @event bootstrap
          * @param event {Object}
          * @param url {String}
@@ -198,13 +234,10 @@
          */
         $scope.$on('bootstrap', function bootstrap(event, url) {
 
-            // Store the URL that we got from the node's attribute.
-            $scope.url = url;
-
             $logger.log('Client Connecting: ' + url);
 
-            // Connect!
-            $scope.connect();
+            // Store the URL that we got from the node's attribute, and connect!
+            $scope.url = url;
 
         });
 
@@ -213,7 +246,7 @@
             // Connect to the Ruby WebSocket server.
             $scope.status   = 'Connecting...';
             $scope.error    = false;
-            $webSocket.connect('ws://localhost:8080');
+            $webSocket.connect($scope.url);
 
         };
 
@@ -223,7 +256,7 @@
          * @return {void}
          */
         $scope.$on('connected', function connected() {
-            // Noop
+            $scope.$emit('setUsername', $scope.username);
         });
 
         /**

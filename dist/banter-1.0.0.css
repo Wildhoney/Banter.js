@@ -10,7 +10,8 @@ section.banter {
   margin: 0 auto;
   width: 400px;
   height: 450px;
-  margin-top: 50px; }
+  margin-top: 50px;
+  position: relative; }
   section.banter div.bootstrap {
     color: white;
     text-shadow: 1px 1px 5px black; }
@@ -162,3 +163,61 @@ section.banter {
             width: 294px;
             text-align: justify;
             padding-top: 5px; }
+  section.banter div.conversation.disabled {
+    -webkit-filter: blur(2px);
+    pointer-events: none; }
+  section.banter div.register {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+    left: 50px;
+    top: 50px;
+    box-sizing: border-box;
+    padding: 30px;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    width: 320px; }
+    section.banter div.register h2 {
+      font-weight: normal;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-family: "Lato", sans-serif; }
+    section.banter div.register p.description {
+      font-size: 15px;
+      font-style: italic;
+      font-family: "Times New Roman", serif;
+      padding-top: 5px;
+      letter-spacing: 0.075em;
+      font-size: 12px; }
+    section.banter div.register input {
+      width: 150px;
+      margin-top: 20px;
+      float: left;
+      height: 30px;
+      line-height: 30px;
+      box-sizing: border-box;
+      border: 1px solid lightgray;
+      padding: 10px; }
+    section.banter div.register button {
+      margin-left: 5px;
+      width: 100px;
+      height: 30px;
+      border: 0;
+      float: left;
+      color: white;
+      font-family: "Lato", sans-serif;
+      text-transform: uppercase;
+      background-color: pink;
+      margin-top: 20px;
+      padding: 6px;
+      cursor: pointer;
+      opacity: .45;
+      pointer-events: none;
+      transition: 0.55s all;
+      -o-transition: 0.55s all;
+      -moz-transition: 0.55s all;
+      -webkit-transition: 0.55s all; }
+      section.banter div.register button:hover {
+        background-color: black; }
+      section.banter div.register button.valid {
+        pointer-events: all;
+        opacity: 1; }

@@ -21,35 +21,51 @@
 
         <div class="window">
 
-            <div class="title">
-                <h1>Casual Support Banter</h1>
-                <h2>p.s.: You're using <a href="https://github.com/Wildhoney/Banter.js">Banter.js</a>, sunshine!</h2>
+            <div class="register" ng-show="!$parent.username.length" ng-controller="RegisterController">
+
+                <h2>I choose you, Pikachu!</h2>
+                <p class="description">Please specify a username to speak with our lovely staff.</p>
+
+                <form>
+                    <input ng-model="username" type="text" placeholder="Username..." />
+                    <button ng-click="registerUsername()" ng-class="{valid: username.length}">Let's Speak!</button>
+                </form>
+
             </div>
 
-            <div class="close" ng-click="disconnect()">&times;</div>
+            <div ng-class="{disabled: !username.length}" class="conversation">
 
-            <div class="post">
-                <textarea ng-model="message" placeholder="Здравствуйте Comrade! What's the matter?"></textarea>
-                <button class="submit" ng-click="sendMessage(message)" ng-class="{connected: connected, send: message.length}">
-                    <span ng-hide="connected">{{status}}</span>
-                    <span ng-show="connected">Fly Away&hellip;</span>
-                </button>
+                <div class="title">
+                    <h1>Casual Support Banter</h1>
+                    <h2>p.s.: You're using <a href="https://github.com/Wildhoney/Banter.js">Banter.js</a>, sunshine!</h2>
+                </div>
+
+                <div class="close" ng-click="disconnect()">&times;</div>
+
+                <div class="post">
+                    <textarea ng-model="message" placeholder="Здравствуйте Comrade! What's the matter?"></textarea>
+                    <button class="submit" ng-click="sendMessage(message)" ng-class="{connected: connected, send: message.length}">
+                        <span ng-hide="connected">{{status}}</span>
+                        <span ng-show="connected">Fly Away&hellip;</span>
+                    </button>
+                </div>
+
+                <ul class="messages">
+                    <li class="error" ng-hide="!error">
+                        <p>Banter.js cannot connect to the server.</p>
+                        <button ng-click="connect()" class="retry">Retry</button>
+                    </li>
+                    <li ng-repeat="message in messages">
+                        <img src="http://2.gravatar.com/avatar/{{gravatar}}" />
+                        <div class="message">
+                            <h2><span>{{message.name}}</span> says:</h2>
+                            <h3>9th of Jan, 01:15:32</h3>
+                            <p>{{message.message}}</p>
+                        </div>
+                    </li>
+                </ul>
+
             </div>
-
-            <ul class="messages">
-                <li class="error" ng-hide="!error">
-                    <p>Banter.js cannot connect to the server.</p>
-                    <button ng-click="connect()" class="retry">Retry</button>
-                </li>
-                <li ng-repeat="message in messages">
-                    <img src="http://2.gravatar.com/avatar/{{gravatar}}" />
-                    <div class="message">
-                        <h2><span>{{message.name}}</span> says:</h2>
-                        <h3>9th of Jan, 01:15:32</h3>
-                        <p>{{message.message}}</p>
-                    </div>
-                </li>
-            </ul>
 
         </div>
 
