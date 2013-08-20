@@ -3,7 +3,9 @@ Banter.js
 
 <img src="https://travis-ci.org/Wildhoney/Banter.js.png?branch=master" alt="Travis CI" />
 
-Ruby/Angular.js hybrid for communicating with customers over IRC.
+Talk to your clients in real-time as they browse your website over IRC!
+
+<iframe src="http://player.vimeo.com/video/72780386" width="434" height="266" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 
 Libraries
@@ -18,8 +20,3 @@ Sass
 ---------
 
 By running `grunt` the Sass stylesheet will be processed and a CSS file created in `dist`. If you want to update the path to the images directory, then you can do that in the `default.scss` file by changing `$assets-path` and then running `grunt`.
-
-Screenshots
----------
-
-<img src="http://i39.tinypic.com/2cgdjj5.png" alt="Banter.js 1.0.0 Screenshot" />
