@@ -35,6 +35,7 @@ EM.run do
         # resolve our promise -- updating the client connected via WebSockets.
         banter.connect(message['username'], 'irc.freenode.net', 6667, '#banter-test').then {
 
+          # Send back the information to the client, such as their MD5 hash for Gravatar.
           websocket.send({
            :command    => true,
            :connected  => true,
@@ -44,15 +45,23 @@ EM.run do
           # Configure the responding to messages.
           banter.irc.on :channel do |event|
 
-            if (event[:user] != '~Ponder')
+            # Find the sender of the message as well as the potential receiver.
+            sender    = event[:user].sub!('~', '')
+            receiver  = event[:message].match(/^(.+):/i)
 
-              websocket.send({
-               :command  => false,
-               :name     => event[:user].sub!('~', ''),
-               :message  => event[:message] }.to_json
-              )
+            # Beautify the message getting sent to the client!
+            message = event[:message]
+            message.sub!(username, '')
+            message.sub!(':', '')
+            message.chomp!
 
-            end
+            # Only send the message to the client if it's not from the "Ponder" username --
+            # which means another client sent it, or it's not intended for the current user.
+            websocket.send({
+             :command  => false,
+             :name     => sender,
+             :message  => event[:message] }.to_json
+            ) if !receiver.nil? && sender != 'Ponder' && receiver[1] == username
 
           end
 
