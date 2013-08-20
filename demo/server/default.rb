@@ -16,7 +16,11 @@ EM.run do
     # Create an instance of the Banter.js server!
     banter = Banter.new
 
+    # Username of the connect client.
+    username = ''
+
     websocket.onmessage { |data|
+
       # When a message is received we'll send that to the IRC channel!
       message = JSON.parse data
 
@@ -25,7 +29,7 @@ EM.run do
         banter.irc.quit
       elsif message['command'] && message['username']
 
-        puts data
+        username = message['username']
 
         # Using promises we'll connect to the IRC server, join the channel, and then
         # resolve our promise -- updating the client connected via WebSockets.
@@ -39,11 +43,17 @@ EM.run do
 
           # Configure the responding to messages.
           banter.irc.on :channel do |event|
-            websocket.send({
-             :command  => false,
-             :name     => event[:user].sub!('~', ''),
-             :message  => event[:message] }.to_json
-            )
+
+            if (event[:user] != '~Ponder')
+
+              websocket.send({
+               :command  => false,
+               :name     => event[:user].sub!('~', ''),
+               :message  => event[:message] }.to_json
+              )
+
+            end
+
           end
 
           # When the client closes the browser, then we'll need to remove them from
@@ -53,6 +63,7 @@ EM.run do
           }
 
         }
+
       else
         banter.send_message message['message']
       end
