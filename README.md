@@ -13,6 +13,14 @@ It couldn't be any simpler the way it works. All of your support staff sit in on
 
 <img src="http://i.imgur.com/KmrRNX1.png" />
 
+Installation
+---------
+
+Once you've installed `npm` and `grunt`:
+
+ * Minify the JS and Sass files: `grunt build`
+ * Run the Jasmine tests: `grunt`
+
 Libraries
 ---------
 
