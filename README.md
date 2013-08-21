@@ -5,8 +5,7 @@ Banter.js
 
 Talk to your clients in real-time as they browse your website over IRC!
 
-<iframe src="http://player.vimeo.com/video/72780386" width="434" height="266" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
+**Demo video:** http://player.vimeo.com/video/72780386
 
 Libraries
 ---------
@@ -20,3 +19,11 @@ Sass
 ---------
 
 By running `grunt` the Sass stylesheet will be processed and a CSS file created in `dist`. If you want to update the path to the images directory, then you can do that in the `default.scss` file by changing `$assets-path` and then running `grunt`.
+
+
+Screenshots
+---------
+
+<img src="http://i.imgur.com/7Lfmo7F.png" />
+<img src="http://i.imgur.com/3QrKMTB.png" />
+<img src="http://i.imgur.com/AbRST4H.png" />
