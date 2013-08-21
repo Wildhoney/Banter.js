@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
     // Testing.
     grunt.registerTask('test', ['jshint']);
-    grunt.registerTask('test', ['uglify', 'sass']);
+    grunt.registerTask('build', ['uglify', 'sass']);
 
     // Build.
     grunt.registerTask('default', ['jshint', 'uglify', 'sass']);
