@@ -3,6 +3,8 @@ Banter.js
 
 <img src="https://travis-ci.org/Wildhoney/Banter.js.png?branch=master" alt="Travis CI" />
 
+<img src="https://cdn0.iconfinder.com/data/icons/toys/128/teddy_bear_toy_4.png" />
+
 Talk to your clients in real-time as they browse your website over IRC!
 
 **Demo video:** http://player.vimeo.com/video/72780386
