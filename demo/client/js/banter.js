@@ -108,6 +108,10 @@
 
                 console.log(messageEvent.data);
                 $logger.log('Message Received (' + messageEvent.data.length + ' Characters), Sweetie...');
+
+                // Add the local date to the message.
+                data.date = moment().format('MMMM Do YYYY, HH:mm:ss');
+
                 $rootScope.$broadcast('receivedMessage', data);
             };
 
@@ -333,7 +337,15 @@
          * @return {void}
          */
         $scope.sendMessage = function sendMessage(message) {
-            var data = { name: $scope.username, message: message, gravatar: $scope.gravatar };
+
+            // Message data packet.
+            var data = {
+                name     : $scope.username,
+                message  : message,
+                date     : moment().format('MMMM Do YYYY, HH:mm:ss'),
+                gravatar : $scope.gravatar
+            };
+
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);
