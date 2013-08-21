@@ -20,6 +20,7 @@ Once you've installed `npm` and `grunt`:
 
  * Minify the JS and Sass files: `grunt build`
  * Run the Jasmine tests: `grunt`
+ * Run the Ruby server: `ruby demo/server/default.rb`
 
 Libraries
 ---------
