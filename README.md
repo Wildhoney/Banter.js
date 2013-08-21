@@ -7,7 +7,7 @@ Talk to your clients in real-time as they browse your website over IRC!
 
 **Demo video:** http://player.vimeo.com/video/72780386
 
-It couldn't be any simpler the way it works. All of your support staff sit in one IRC channel, and clients can connect for help. They all enter the same IRC channel, but are unable to see each other. Messages are sent from the channel to individual clients using "<strong>>USER:</strong> Hi!" format, and customers respond with their messages visible to all support staff &ndash; with each staff member having the ability to respond individually and directly.
+It couldn't be any simpler the way it works. All of your support staff sit in one IRC channel, and clients can connect for help. They all enter the same IRC channel, but are unable to see each other. Messages are sent from the channel to individual clients using "<strong>USER:</strong> Hi!" format, and customers respond with their messages visible to all support staff &ndash; with each staff member having the ability to respond individually and directly.
 
 <img src="http://i.imgur.com/PBNJmRh.png" />
 
