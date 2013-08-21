@@ -1,4 +1,11 @@
-(function($w, $j) {
+/**
+ * @method Main
+ * @param $w {window}
+ * @param $j {jQuery}
+ * Closure for encapsulating all of the Angular related things.
+ * @return {void}
+ */
+(function Main($w, $j) {
 
     // Initialise the Banter.js application, baby!
     $w.banterApp = angular.module('banterApp', []);
@@ -26,7 +33,7 @@
          * @method error
          * Wrapper for console.error.
          */
-        service.error = function log(message) {
+        service.error = function error(message) {
             console.error('Banter.js @ ' + moment().format('HH:mm:ss') + ' - ' + message);
         };
 
@@ -64,13 +71,22 @@
             $rootScope.webSocket = ws = new WebSocket(url);
 
             /**
+             * @method onclose
+             * @emit disconnected
+             * Resets the application when the WebSocket connection has been lost.
+             * @return {Boolean}
+             */
+            $rootScope.webSocket.onclose = function onclose() {
+                $rootScope.$broadcast('disconnected');
+            };
+
+            /**
              * @method onopen
              * @broadcasts connected
              * @return {void}
              */
             ws.onopen = function onopen() {
                 $logger.log('Banter.js Connected, Sugar!');
-//                ws.send('Server: Client Connected at ' + moment().format('HH:mm:ss'));
                 $rootScope.$broadcast('connected');
             };
 
@@ -256,6 +272,11 @@
 
         });
 
+        /**
+         * @method connect
+         * Invokes the WebSocket handshake to make a connection to the IRC server.
+         * @return {void}
+         */
         $scope.connect = function connect() {
 
             // Connect to the Ruby WebSocket server.
@@ -272,6 +293,18 @@
          */
         $scope.$on('connected', function connected() {
             $scope.$emit('setUsername', $scope.username);
+        });
+
+        /**
+         * @event disconnected
+         * Invoke when the connection to the Ruby server is lost.
+         * @return {void}
+         */
+        $scope.$on('disconnected', function disconnected() {
+            $scope.status       = 'Disconnected';
+            $scope.error        = true;
+            $scope.connected    = false;
+            $scope.$apply();
         });
 
         /**
