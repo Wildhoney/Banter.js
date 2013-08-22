@@ -65,6 +65,12 @@ EM.run do
 
           end
 
+          # When the client is kicked from the IRC channel by one of the staff members.
+          banter.irc.on :kick do |event|
+            banter.irc.quit
+            websocket.close_connection
+          end
+
           # When the client closes the browser, then we'll need to remove them from
           # the IRC channel.
           websocket.onclose {
