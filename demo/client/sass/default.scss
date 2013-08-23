@@ -151,6 +151,16 @@ section.banter {
         padding: 12px;
         overflow: hidden;
 
+        transition: all .35s;
+        -o-transition: all .35s;
+        -moz-transition: all .35s;
+        -webkit-transition: all .35s;
+
+        &.faded {
+          opacity: .45;
+          -webkit-filter: grayscale(100%);
+        }
+
         &.error {
           font-family: "Times New Roman", serif;
           font-style: italic;

@@ -57,7 +57,7 @@
                             <p>Banter.js has lost its cousin!</p>
                             <button ng-click="connect()" class="retry">Retry</button>
                         </li>
-                        <li ng-repeat="message in messages">
+                        <li ng-repeat="message in messages" ng-class="{faded: error}">
                             <img src="http://2.gravatar.com/avatar/{{gravatar}}" />
                             <div class="message">
                                 <h2><span>{{message.name}}</span> says:</h2>
