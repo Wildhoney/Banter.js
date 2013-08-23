@@ -222,20 +222,6 @@
         $scope.error = false;
 
         /**
-         * @property messages
-         * @type {Array}
-         * @default []
-         */
-        $scope.messages = [];
-
-        /**
-         * @property message
-         * @type {String}
-         * @default ''
-         */
-        $scope.message = '';
-
-        /**
          * @property gravatar
          * @type {String}
          * @default ''
@@ -319,6 +305,61 @@
         });
 
         /**
+         * @method disconnect
+         * @emits sendMessage
+         * @return {void}
+         */
+        $scope.disconnect = function disconnect() {
+            var data = { command: true, disconnect: true };
+            $scope.connected = false;
+            $scope.status = 'Disconnected';
+            $scope.$emit('sendMessage', data);
+        };
+
+    }]);
+
+    /**
+     * @controller MessagesController
+     * @type {Function}
+     */
+    banterApp.controller('MessagesController', ['$scope', function($scope) {
+
+        /**
+         * @property message
+         * @type {String}
+         * @default ''
+         */
+        $scope.message = '';
+
+        /**
+         * @property messages
+         * @type {Array}
+         * @default []
+         */
+        $scope.messages = [];
+
+        /**
+         * @method sendMessage
+         * @param message {String}
+         * @emits sendMessage
+         * @return {void}
+         */
+        $scope.sendMessage = function sendMessage(message) {
+
+            // Message data packet.
+            var data = {
+                name     : $scope.username,
+                message  : message,
+                date     : moment().format('MMMM Do YYYY, HH:mm:ss'),
+                gravatar : $scope.gravatar
+            };
+
+            $scope.messages.unshift(data);
+            $scope.message = '';
+            $scope.$emit('sendMessage', data);
+        };
+
+        /**
          * @event receivedMessage
          * @param event {Object}
          * @param data {Object}
@@ -350,39 +391,6 @@
             }
 
         });
-
-        /**
-         * @method disconnect
-         * @emits sendMessage
-         * @return {void}
-         */
-        $scope.disconnect = function disconnect() {
-            var data = { command: true, disconnect: true };
-            $scope.connected = false;
-            $scope.status = 'Disconnected';
-            $scope.$emit('sendMessage', data);
-        };
-
-        /**
-         * @method sendMessage
-         * @param message {String}
-         * @emits sendMessage
-         * @return {void}
-         */
-        $scope.sendMessage = function sendMessage(message) {
-
-            // Message data packet.
-            var data = {
-                name     : $scope.username,
-                message  : message,
-                date     : moment().format('MMMM Do YYYY, HH:mm:ss'),
-                gravatar : $scope.gravatar
-            };
-
-            $scope.messages.unshift(data);
-            $scope.message = '';
-            $scope.$emit('sendMessage', data);
-        };
 
     }]);
 
