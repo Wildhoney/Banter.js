@@ -58,7 +58,8 @@
                             <button ng-click="connect()" class="retry">Retry</button>
                         </li>
                         <li ng-repeat="message in messages" ng-class="{faded: error}">
-                            <img src="http://2.gravatar.com/avatar/{{gravatar}}" />
+                            <img src="http://2.gravatar.com/avatar/{{gravatar}}" ng-hide="message.type == 'received'" />
+                            <img src="http://i.imgur.com/YCJGUvP.png" ng-hide="message.type == 'sent'" />
                             <div class="message">
                                 <h2><span>{{message.name}}</span> says:</h2>
                                 <h3>{{message.date}}</h3>

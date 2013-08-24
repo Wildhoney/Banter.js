@@ -222,13 +222,6 @@
         $scope.error = false;
 
         /**
-         * @property gravatar
-         * @type {String}
-         * @default ''
-         */
-        $scope.gravatar = '';
-
-        /**
          * @property url
          * @type {String}
          * @default ''
@@ -325,6 +318,13 @@
     banterApp.controller('MessagesController', ['$scope', function($scope) {
 
         /**
+         * @property gravatar
+         * @type {String}
+         * @default ''
+         */
+        $scope.gravatar = '';
+
+        /**
          * @property message
          * @type {String}
          * @default ''
@@ -354,6 +354,7 @@
                 gravatar : $scope.gravatar
             };
 
+            data.type = 'sent';
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);
@@ -369,6 +370,7 @@
         $scope.$on('receivedMessage', function receivedMessage(event, data) {
             // We've received a message, so we'll push it into the collection
             // of messages!
+            data.type = 'received';
             $scope.messages.unshift(data);
             $scope.$apply();
             return true;
