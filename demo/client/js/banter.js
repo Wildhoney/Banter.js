@@ -236,6 +236,17 @@
         $scope.username = '';
 
         /**
+         * @method throwError
+         * @return {void}
+         */
+        var throwError = function throwError() {
+            $scope.status       = 'Disconnected';
+            $scope.error        = true;
+            $scope.connected    = false;
+            $scope.$apply();
+        };
+
+        /**
          * @event bootstrap
          * @param event {Object}
          * @param url {String}
@@ -280,10 +291,7 @@
          * @return {void}
          */
         $scope.$on('disconnected', function disconnected() {
-            $scope.status       = 'Disconnected';
-            $scope.error        = true;
-            $scope.connected    = false;
-            $scope.$apply();
+            throwError();
         });
 
         /**
@@ -292,9 +300,7 @@
          * @return {void}
          */
         $scope.$on('error', function error() {
-            $scope.status   = 'Failed';
-            $scope.error    = true;
-            $scope.$apply();
+            throwError();
         });
 
         /**
@@ -342,7 +348,7 @@
          * @method sendMessage
          * @param message {String}
          * @emits sendMessage
-         * @return {void}
+         * @return {Boolean}
          */
         $scope.sendMessage = function sendMessage(message) {
 
@@ -358,6 +364,8 @@
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);
+            return true;
+
         };
 
         /**
@@ -368,6 +376,7 @@
          * @return {Boolean}
          */
         $scope.$on('receivedMessage', function receivedMessage(event, data) {
+
             // We've received a message, so we'll push it into the collection
             // of messages!
             data.type = 'received';
@@ -388,9 +397,12 @@
 
             if (data.connected) {
                 $scope.gravatar = data.gravatar;
-                $scope.connected = true;
+                $scope.$parent.connected = true;
                 $scope.$apply();
+                return true;
             }
+
+            return false;
 
         });
 
