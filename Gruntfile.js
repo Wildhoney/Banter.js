@@ -28,18 +28,28 @@ module.exports = function(grunt) {
                     'dist/banter-<%= pkg.version %>.css': 'demo/client/sass/default.scss'
                 }
             }
+        },
+        jasmine: {
+            pivotal: {
+                src: 'demo/client/js/banter.js',
+                options: {
+                    specs: 'tests/client/spec.js',
+                    helpers: ['demo/client/js/vendor/*', 'tests/client/vendor/angular-mocks-*.js']
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     // Testing.
-    grunt.registerTask('test', ['jshint']);
+    grunt.registerTask('test', ['jshint', 'jasmine']);
     grunt.registerTask('build', ['uglify', 'sass']);
 
     // Build.
-    grunt.registerTask('default', ['jshint', 'uglify', 'sass']);
+    grunt.registerTask('default', ['jshint', 'jasmine', 'uglify', 'sass']);
 
 };
