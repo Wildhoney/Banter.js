@@ -236,10 +236,11 @@
         $scope.username = '';
 
         /**
-         * @method throwError
+         * @method _throwError
          * @return {void}
+         * @private
          */
-        var throwError = function throwError() {
+        var _throwError = function _throwError() {
             $scope.status       = 'Disconnected';
             $scope.error        = true;
             $scope.connected    = false;
@@ -291,7 +292,7 @@
          * @return {void}
          */
         $scope.$on('disconnected', function disconnected() {
-            throwError();
+            _throwError();
         });
 
         /**
@@ -300,7 +301,7 @@
          * @return {void}
          */
         $scope.$on('error', function error() {
-            throwError();
+            _throwError();
         });
 
         /**
