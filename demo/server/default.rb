@@ -60,6 +60,7 @@ EM.run do
             websocket.send({
              :command  => false,
              :name     => sender,
+             :type     => 'received',
              :message  => event[:message] }.to_json
             ) if !receiver.nil? && sender != 'Ponder' && receiver[1] == username
 

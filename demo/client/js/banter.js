@@ -356,11 +356,11 @@
             var data = {
                 name     : $scope.username,
                 message  : message,
+                type     : 'sent',
                 date     : moment().format('MMMM Do YYYY, HH:mm:ss'),
                 gravatar : $scope.gravatar
             };
 
-            data.type = 'sent';
             $scope.messages.unshift(data);
             $scope.message = '';
             $scope.$emit('sendMessage', data);
@@ -379,7 +379,6 @@
 
             // We've received a message, so we'll push it into the collection
             // of messages!
-            data.type = 'received';
             $scope.messages.unshift(data);
             $scope.$apply();
             return true;
