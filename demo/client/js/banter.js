@@ -409,14 +409,14 @@
     }]);
 
     /**
-     * @directive websocketServer
+     * @directive banter
      * @restrict A
      * @type {Function}
      * Extracts the WebSocket URL from the root element. Once the URL has been determined
      * we can bootstrap the application.
      * @return {Object}
      */
-    banterApp.directive('banter', ['$rootScope', function websocketServer($rootScope) {
+    banterApp.directive('banter', ['$rootScope', function banterDirective($rootScope) {
 
         return { restrict: 'C', link: function linkFn($attrs) {
 
@@ -426,6 +426,46 @@
 
             // Let everybody know we found the WebSocket URL!
             $rootScope.$broadcast('bootstrap', url);
+
+        }};
+
+    }]);
+
+    /**
+     * @directive sendOnKeyup
+     * @restrict A
+     * @type {Function}
+     * Allows the submitting of messages by hitting the {ENTER} key.
+     * @return {Object}
+     */
+    banterApp.directive('sendOnKeyup', ['$rootScope', function sendOnKeyupDirective($rootScope) {
+
+        return { restrict: 'A', link: function linkFn($scope, $element) {
+
+            // Make the textarea element respond to key events, and detect if the user pressed
+            // the {ENTER} key, in which case we'll send the message!
+            $element.bind('keyup', function keyup(event) {
+
+                if ($scope.connected === false) {
+
+                    // We can't do anything if we're not connected to the server yet!
+                    return false;
+
+                }
+
+                if (event.keyCode !== 13) {
+
+                    // Do nothing if the key pressed wasn't {ENTER}!
+                    return false;
+
+                }
+
+                // Send the message!
+                $scope.sendMessage($element.val().trim());
+                $element.val('');
+                return true;
+
+            });
 
         }};
 
