@@ -1,6 +1,6 @@
 {
   "name": "banter-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Adam Timberlake",
   "repository": {
     "type": "git",
@@ -12,5 +12,25 @@
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-sass": "~0.4.1",
     "grunt-contrib-jasmine": "~0.5.1"
-  }
+  },
+  "description": "Angular based real-time app for communicating with customers via IRC. Individual customers connect to a common IRC channel, giving staff members the ability to see all customers' messages, with the ability to respond directly and individually.",
+  "bugs": {
+    "url": "https://github.com/Wildhoney/BanterJS/issues"
+  },
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "messaging",
+    "realtime",
+    "messaging",
+    "client",
+    "messaging"
+  ],
+  "license": "BSD-2-Clause"
 }
