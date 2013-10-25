@@ -2,6 +2,8 @@ Banter.js
 =========
 
 <img src="https://travis-ci.org/Wildhoney/Banter.js.png?branch=master" alt="Travis CI" />
+&nbsp;
+<img src="https://badge.fury.io/js/banter-js.png" />
 
 <img src="https://cdn0.iconfinder.com/data/icons/toys/128/teddy_bear_toy_4.png" />
 
