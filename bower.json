@@ -1,0 +1,18 @@
+{
+  "name": "banter-js",
+  "version": "1.0.2",
+  "homepage": "https://github.com/Wildhoney/Banter.js",
+  "authors": [
+    "Adam Timberlake <adam.timberlake@gmail.com>"
+  ],
+  "description": "Angular based real-time app for communicating with customers via IRC. Individual customers connect to a common IRC channel, giving staff members the ability to see all customers' messages, with the ability to respond directly and individually.",
+  "main": "Gruntfile.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

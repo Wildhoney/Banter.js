@@ -26,10 +26,8 @@
     "test": "grunt test"
   },
   "keywords": [
-    "messaging",
-    "realtime",
-    "messaging",
-    "client",
+    "messaging realtime",
+    "messaging client",
     "messaging"
   ],
   "license": "MIT"
