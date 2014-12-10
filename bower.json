@@ -14,5 +14,10 @@
     "bower_components",
     "test",
     "tests"
+  ],
+  "keywords": [
+    "messaging realtime",
+    "messaging client",
+    "messaging"
   ]
 }
